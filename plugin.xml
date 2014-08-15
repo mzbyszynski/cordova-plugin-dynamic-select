@@ -22,7 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 -->
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="org.apache.cordova.picker" version="0.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="org.apache.cordova.dynamic-select" version="0.1.0">
   <name>Dynamic Select</name>
   <description>The Cordova Dynamic Select Plugin adds dynamic functionality to the control exposed when a user interacts with an html select element.</description>
   <author>Marc Zbyszynski</author>

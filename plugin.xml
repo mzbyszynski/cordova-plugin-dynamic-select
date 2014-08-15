@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The MIT License (MIT)
+
+Copyright (c) 2014 Marc Zbyszynski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="org.apache.cordova.picker" version="0.1.0">
+  <name>Dynamic Select</name>
+  <description>The Cordova Dynamic Select Plugin adds dynamic functionality to the control exposed when a user interacts with an html select element.</description>
+  <author>Marc Zbyszynski</author>
+  <license>The MIT License</license>
+  <keywords>cordova,ios,picker,dynamic picker,dynamic select</keywords>
+  <repo>https://github.com/mzbyszynski/cordova-plugin-dynamic-select.git</repo>
+  <issue>https://github.com/mzbyszynski/cordova-plugin-dynamic-select/issues</issue>
+
+  <engines>
+    <enine name="cordova" version=">=3.5.0" />
+  </engines>
+
+  <js-module src="www/dynamicselect.js" name="dynamicselect">
+    <clobbers target="cordova.plugins.DynamicSelect" />
+  </js-module>
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="DynamicSelect">
+        <param name="ios-package" value="CDVDynamicSelect" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/CDVDynamicSelect.h" />
+    <source-file src="src/ios/CDVDynamicSelect.m" />
+    <header-file src="src/ios/DOMHTMLOptionElementProxy.h" />
+    <source-file src="src/ios/DOMHTMLOptionElementProxy.m" />
+    <header-file src="src/ios/DOMHTMLOptionsCollectionProxy.h" />
+    <source-file src="src/ios/DOMHTMLOptionsCollectionProxy.m" />
+    <header-file src="src/ios/DOMHTMLSelectElementProxy.h" />
+    <source-file src="src/ios/DOMHTMLSelectElementProxy.m" />
+    <header-file src="src/ios/UIDOMHTMLOptionSelectedItemProxy.h" />
+    <source-file src="src/ios/UIDOMHTMLOptionSelectedItemProxy.m" />
+    <header-file src="src/ios/UIWebSelectingSinglePickerProxy.h" />
+    <source-file src="src/ios/UIWebSelectingSinglePickerProxy.m" />
+
+  </platform>
+</plugin>

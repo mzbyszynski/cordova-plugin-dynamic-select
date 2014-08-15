@@ -33,7 +33,7 @@ module.exports = (function() {
     makeDynamic: function(selectElement) {
       // need to enable the option focus change events when the picker is visible or it won't work.
       selectElement.addEventListener('focus', function(evt) {
-        CDVDynamicPicker.enableOptionFocusChangeEvents(function() {
+        this.enableOptionFocusChangeEvents(function() {
           console.log('focus change enabled');
         }, function(err) {
           console.log('focus change enable failed: ' + err);

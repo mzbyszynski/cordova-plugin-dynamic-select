@@ -24,16 +24,17 @@ THE SOFTWARE.
 'use strict';
 
 module.exports = (function() {
+
 	/**
    * @class navigator.picker
    * @singleton
    */   
-  return {
+  var selectController = {
 
     makeDynamic: function(selectElement) {
       // need to enable the option focus change events when the picker is visible or it won't work.
       selectElement.addEventListener('focus', function(evt) {
-        this.enableOptionFocusChangeEvents(function() {
+        selectController.enableOptionFocusChangeEvents(function() {
           console.log('focus change enabled');
         }, function(err) {
           console.log('focus change enable failed: ' + err);
@@ -62,4 +63,6 @@ module.exports = (function() {
       cordova.exec(success, failure, 'DynamicSelect', 'refresh', []);
     }
   };
+
+  return selectController;
 })();

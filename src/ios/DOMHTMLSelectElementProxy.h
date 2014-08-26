@@ -37,4 +37,6 @@ THE SOFTWARE.
 
 -(DOMHTMLOptionsCollectionProxy *)options;
 
+-(NSInteger) selectedIndex;
+
 @end

@@ -54,16 +54,27 @@ static Method initMethod;
 }
 
 -(void)refreshOptions {
+    id indexToSelectWhenDone = [self.picker valueForKey:@"_indexToSelectWhenDone"];
+    NSInteger focused = [indexToSelectWhenDone integerValue];
+
     DOMHTMLSelectElementProxy *select = [self selectNode];
+    NSInteger selected = [select selectedIndex];
     NSMutableArray *newOpts = [NSMutableArray arrayWithCapacity:[select length]];
     DOMHTMLOptionsCollectionProxy *options = [select options];
     for (int i = 0; i < [select length]; i++) {
         DOMHTMLOptionElementProxy *opt = [options item:i];
         UIDOMHTMLOptionSelectedItemProxy *selItem = [[UIDOMHTMLOptionSelectedItemProxy alloc] initWithHTMLOptionNode:[opt optionEl]];
-        if (i == [self indexToSelectWhenDone]) {
-            [selItem setSelected:YES];
-        } else {
-            [selItem setSelected:NO];
+        // another bit of ugliness in this ugly business. When using this plugin with another js framework that is manipulating the
+        // DOM and managing the state of the select associated with this picker, it can cause some memory errors if this code tries to
+        // change the selection while it is already in a changed state. This comparision prevents that in the use cases that I have seen
+        // so far.
+        if (selected != focused) {
+            if (i == focused) {
+                NSLog(@"Setting item %d to selected",i);
+                [selItem setSelected:YES];
+            } else {
+                [selItem setSelected:NO];
+            }
         }
         [newOpts addObject:[selItem item]];
     }

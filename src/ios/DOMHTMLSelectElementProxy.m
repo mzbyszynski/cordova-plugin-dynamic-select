@@ -53,4 +53,9 @@ THE SOFTWARE.
     return self.optionsProxy;
 }
 
+-(NSInteger) selectedIndex {
+    id selectedItem = [self.selectEl valueForKey:@"selectedIndex"];
+    return [selectedItem integerValue];
+}
+
 @end

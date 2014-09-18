@@ -51,7 +51,6 @@ static CDVDynamicSelect* weakSelf;
 
 -(void)enableOptionFocusChangeEvents:(CDVInvokedUrlCommand *)command {
     if (!originalSelectMethodImp) {
-        NSLog(@"swizzlin");
         UIPickerView* picker = [self getPicker:self.webView];
         if (picker == nil) {
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No Picker"];
@@ -60,8 +59,6 @@ static CDVDynamicSelect* weakSelf;
         }
         Method m = class_getInstanceMethod([picker class], @selector(pickerView:didSelectRow:inComponent:));
         originalSelectMethodImp = method_setImplementation(m, (IMP)_didSelectRowReplacementMethod);
-    } else {
-        NSLog(@"optionfocuschangeevents already enabled");
     }
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -86,7 +83,6 @@ static CDVDynamicSelect* weakSelf;
 }
 
 void _didSelectRowReplacementMethod(id self, SEL _cmd, UIPickerView* pickerView, NSInteger row, NSInteger component) {
-    NSLog(@"my didSelectRow method was invoked!");
     ((void(*)(id, SEL, UIPickerView*, NSInteger, NSInteger))originalSelectMethodImp)(self, _cmd, pickerView, row, component);
     [weakSelf.commandDelegate evalJs:[NSString stringWithFormat:@"cordova.plugins.DynamicSelect.notifySelectFocusChange(%ld);", row]];
 }
